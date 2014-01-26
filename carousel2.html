@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class=" js csstransforms3d">
+  <head>
+  <meta charset="utf-8">
+  <!-- disable zooming -->
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=0">
+  <title>Carousel 1 · Intro to CSS 3D transforms › Examples</title>
+  <link rel="stylesheet" href="styles.css" media="screen">
+    <style media="screen">
+    .container {
+      width: 230px;
+      height: 210px;
+      position: relative;
+      margin: 0 auto 40px;
+      /*border: 1px solid #CCC;*/
+      -webkit-perspective: 1100px;
+         -moz-perspective: 1100px;
+           -o-perspective: 1100px;
+              perspective: 1100px;
+    }
+    #carousel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      -webkit-transform: translateZ( -288px );
+         -moz-transform: translateZ( -288px );
+           -o-transform: translateZ( -288px );
+              transform: translateZ( -288px );
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+      -webkit-transition: -webkit-transform 1s;
+         -moz-transition: -moz-transform 1s;
+           -o-transition: -o-transform 1s;
+              transition: transform 1s;
+    }
+    #carousel figure {
+      font-family: 'PT Sans', arial, serif;
+      border-bottom: 3px solid rgba(0,0,0,0.5);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      background: rgba(0,0,0,0.25);
+      -o-box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+      -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+      -moz-box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5), /* Exterior Shadow inset 0 1px rgba(255,255,255,0.3), /* Top light Line inset 0 10px rgba(255,255,255,0.2), /* Top Light Shadow */ inset 0 10px 20px rgba(255,255,255,0.25), /* Sides Light Shadow */ inset 0 -15px 30px rgba(0,0,0,0.3);
+
+      display: block;
+      position: absolute;
+      width: 236px;
+	    height: 210px;
+      left: 10px;
+      top: 10px;
+      line-height: 116px;
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+    }
+    .arrwImg{
+      opacity: 0.2;
+    }
+    .arrwImg:hover {
+      opacity: 1;
+    }
+  </style>
+
+</head>
+<body>
+
+  <h1>Carousel 1</h1>
+  <img class="arrwImg" data-increment="-1" src="slideshowArrowL.png" style="float: left;">
+  <img class="arrwImg" data-increment="1" src="slideshowArrowR.png" style="float: right;">
+  <section class="container">
+    <div id="carousel">
+    </div>
+  </section>
+  <section id="options" style=" text-align: center; ">
+    <p id="navigation">
+      <button id="previous" data-increment="-1">Previous</button>
+      <input type="text" id="search" />
+      <button id="next" data-increment="1">Next</button>
+    </p>
+
+  </section>
+
+  <script src="utils.js"></script>
+  <script>
+    var xmlData = "<MAINCONFIG Name='' RtmId='' AllowLoad='' lagMenu='' AttributeId='' Reevaluate='' DateEdit='' Power='' UserName='' ResourceId='' TftpIpAddress='' DebugId='' TftpImagePath='' MainId='' TftpImageName='' MainConfigurationUserId='' Description='' TimeEdit='' Id='' ImportedDevice='0' LocalFlag='1' ImportedFlag='0'><DEVICES DeviceId='12519' DeviceType='Dut' IpAddress='1.18.1.15' DeviceName='R1_R15' Model='CISCO2911/K9' SoftwareVersion='' ManagementIp='1.18.1.15' XLocation='' YLocation='' Manufacturer='Cisco' ConsoleIp='172.27.40.49:2015' NVRAMCF='255K bytes' SystemMemory='62720K bytes' SerialNumber='FTX1448AL2H' OSVersion='15.2(4)M1.4' CPUSpeed='' Status='Available' RemainingTime='' StartDate='' EndDate='' UserName='' AvailablePort='2/0/1' PortType='L1/L2/Open' RouteProcessorName='' RouteProcessorVid='' RouteProcessorPid='' EmbeddedProcessorName='' EmbeddedProcessorVid='' EmbeddedProcessorPid='' SoftwarePackage='(C2900-UNIVERSALK9-M)' FreePorts='' LineCardName='' LineCardPid='(Slot 0) CISCO2911/K9' LineCardVid='' ModuleName='' ModulePid='' ModuleVid='' OSType='IOS' ServerType='' PartnerInfo='MRV-13::1000::2' SlotNumber='0' PortName='Embedded-Service-Engine0/0,GigabitEthernet0/0,GigabitEthernet0/1,GigabitEthernet0/2' TotalMemory='' Nitrox='' Octeon='' Availability='' AvailabilityDay='' AvailabilityDate='' AvailabilityTime='' DomainName='Guaranteed'><DEVICE DeviceId='12519' ModelType='CISCO2911/K9' DeviceName='R1_R15' DeviceType='Cisco' Password='' LoopBackAddress='' PortType='' ChassisAddress='' PhysicalPortType='' MainPortOnSwitch='' ControllerInfo='' PowerStatus='' ProtoTypeFlag='false'></DEVICE></DEVICES><DEVICES DeviceId='12523' DeviceType='Dut' IpAddress='1.18.2.8' DeviceName='R2_R8' Model='C892FSP-K9' SoftwareVersion='' ManagementIp='1.18.2.8' XLocation='' YLocation='' Manufacturer='Cisco' ConsoleIp='172.27.63.15:2013' NVRAMCF='255K bytes' SystemMemory='250880K bytes' SerialNumber='FTX1649839Q' OSVersion='15.2(4)M1.4' CPUSpeed='' Status='Available' RemainingTime='' StartDate='' EndDate='' UserName='' AvailablePort='3/0/6' PortType='L1/L2/Open' FreePorts='' OSType='IOS' ServerType='' SlotNumber='' PortName='GigabitEthernet0,GigabitEthernet1,GigabitEthernet2,GigabitEthernet3,GigabitEthernet4,GigabitEthernet5,GigabitEthernet6,GigabitEthernet7,GigabitEthernet8,GigabitEthernet9' Availability='' AvailabilityDay='' AvailabilityDate='' AvailabilityTime='' DomainName='Guaranteed'><DEVICE DeviceId='12523' ModelType='Dut' DeviceName='R2_R8' DeviceType='Dut' Manufacturer='Cisco' Password='' LoopBackAddress='' PortType='' ChassisAddress='' PhysicalPortType='' MainPortOnSwitch='' ControllerInfo='' PowerStatus='' ProtoTypeFlag='false'></DEVICE></DEVICES><DEVICES DeviceId='12559' DeviceType='Dut' IpAddress='1.18.15.8' DeviceName='R15_R8' Model='C10008' SoftwareVersion='' ManagementIp='1.18.15.8' XLocation='' YLocation='' Manufacturer='Cisco' ConsoleIp='172.27.63.12:2007' NVRAMCF='7039K bytes' SystemMemory='1933311K/163839K bytes' SerialNumber='FOX081906KX' OSVersion='12.2(31)SB10e' CPUSpeed='800Mhz' Status='Available' RemainingTime='' StartDate='' EndDate='' UserName='' AvailablePort='2/0/0' PortType='L1/L2/Open' RouteProcessorName='' RouteProcessorVid='' RouteProcessorPid='' EmbeddedProcessorName='' EmbeddedProcessorVid='' EmbeddedProcessorPid='' SoftwarePackage='(C10K3-P11-M)' FreePorts='' LineCardName='' LineCardPid='(Slot 4) ESR-HH-1GE' LineCardVid='' ModuleName='' ModulePid='' ModuleVid='V02,V02,V02' OSType='IOS' ServerType='' PartnerInfo='MRV-13::1000::2' SlotNumber='0,4' PortName='FastEthernet0/0/0,GigabitEthernet4/0/0,GigabitEthernet4/1/0' TotalMemory='' Nitrox='' Octeon='' Availability='' AvailabilityDay='' AvailabilityDate='' AvailabilityTime='' DomainName='Guaranteed'><DEVICE DeviceId='12559' ModelType='C10008' DeviceName='R15_R8' DeviceType='Cisco' Password='' LoopBackAddress='' PortType='' ChassisAddress='' PhysicalPortType='' MainPortOnSwitch='' ControllerInfo='' PowerStatus='' ProtoTypeFlag='false'></DEVICE></DEVICES><DEVICES DeviceId='12569' DeviceType='Dut' IpAddress='1.18.15.2' DeviceName='R15_R2' Model='CISCO7606' SoftwareVersion='' ManagementIp='1.18.15.2' XLocation='' YLocation='' Manufacturer='Cisco' ConsoleIp='172.27.63.12:2012' NVRAMCF='1917K bytes' SystemMemory='458720K/65536K bytes' SerialNumber='FOX090407D5' OSVersion='12.2(33)SRB7' CPUSpeed='600Mhz' Status='Available' RemainingTime='' StartDate='' EndDate='' UserName='' AvailablePort='1/0/120' PortType='L1/L2/Open' RouteProcessorName='' RouteProcessorVid='' RouteProcessorPid='' EmbeddedProcessorName='' EmbeddedProcessorVid='' EmbeddedProcessorPid='' SoftwarePackage='(c7600s72033_rp-ADVENTERPRISEK9-M)' FreePorts='' LineCardName='' LineCardPid='(Slot 1) WS-X6724-SFP,(Slot 6) WS-SUP720-3B' LineCardVid='' ModuleName='' ModulePid='' ModuleVid='' OSType='IOS' ServerType='' PartnerInfo='MRV-13::1000::1' SlotNumber='1,2,3,6' PortName='GigabitEthernet1/1,GigabitEthernet1/2,GigabitEthernet1/3,GigabitEthernet1/4,GigabitEthernet1/5,GigabitEthernet1/6,GigabitEthernet1/7,GigabitEthernet1/8,GigabitEthernet1/9,GigabitEthernet1/10,GigabitEthernet1/11,GigabitEthernet1/12,GigabitEthernet1/13,GigabitEthernet1/14,GigabitEthernet1/15,GigabitEthernet1/16,GigabitEthernet1/17,GigabitEthernet1/18,GigabitEthernet1/19,GigabitEthernet1/20,GigabitEthernet1/21,GigabitEthernet1/22,GigabitEthernet1/23,GigabitEthernet1/24,GigabitEthernet2/1,GigabitEthernet2/2,GigabitEthernet2/3,GigabitEthernet2/4,GigabitEthernet2/5,GigabitEthernet2/6,GigabitEthernet2/7,GigabitEthernet2/8,GigabitEthernet2/9,GigabitEthernet2/10,GigabitEthernet2/11,GigabitEthernet2/12,GigabitEthernet2/13,GigabitEthernet2/14,GigabitEthernet2/15,GigabitEthernet2/16,GigabitEthernet2/17,GigabitEthernet2/18,GigabitEthernet2/19,GigabitEthernet2/20,GigabitEthernet2/21,GigabitEthernet2/22,GigabitEthernet2/23,GigabitEthernet2/24,GigabitEthernet2/25,GigabitEthernet2/26,GigabitEthernet2/27,GigabitEthernet2/28,GigabitEthernet2/29,GigabitEthernet2/30,GigabitEthernet2/31,GigabitEthernet2/32,GigabitEthernet2/33,GigabitEthernet2/34,GigabitEthernet2/35,GigabitEthernet2/36,GigabitEthernet2/37,GigabitEthernet2/38,GigabitEthernet2/39,GigabitEthernet2/40,GigabitEthernet2/41,GigabitEthernet2/42,GigabitEthernet2/43,GigabitEthernet2/44,GigabitEthernet2/45,GigabitEthernet2/46,GigabitEthernet2/47,GigabitEthernet2/48,FastEthernet3/1,FastEthernet3/2,FastEthernet3/3,FastEthernet3/4,FastEthernet3/5,FastEthernet3/6,FastEthernet3/7,FastEthernet3/8,FastEthernet3/9,FastEthernet3/10,FastEthernet3/11,FastEthernet3/12,FastEthernet3/13,FastEthernet3/14,FastEthernet3/15,FastEthernet3/16,FastEthernet3/17,FastEthernet3/18,FastEthernet3/19,FastEthernet3/20,FastEthernet3/21,FastEthernet3/22,FastEthernet3/23,FastEthernet3/24,FastEthernet3/25,FastEthernet3/26,FastEthernet3/27,FastEthernet3/28,FastEthernet3/29,FastEthernet3/30,FastEthernet3/31,FastEthernet3/32,FastEthernet3/33,FastEthernet3/34,FastEthernet3/35,FastEthernet3/36,FastEthernet3/37,FastEthernet3/38,FastEthernet3/39,FastEthernet3/40,FastEthernet3/41,FastEthernet3/42,FastEthernet3/43,FastEthernet3/44,FastEthernet3/45,FastEthernet3/46,FastEthernet3/47,FastEthernet3/48,GigabitEthernet6/1,GigabitEthernet6/2' TotalMemory='' Nitrox='' Octeon='' Availability='' AvailabilityDay='' AvailabilityDate='' AvailabilityTime='' DomainName='Guaranteed'><DEVICE DeviceId='12569' ModelType='CISCO7606' DeviceName='R15_R2' DeviceType='Cisco' Password='' LoopBackAddress='' PortType='L1=1,L2=0,Open=121' ChassisAddress='' PhysicalPortType='' MainPortOnSwitch='' ControllerInfo='' PowerStatus='' ProtoTypeFlag='false'></DEVICE></DEVICES><DEVICES DeviceId='12751' DeviceType='Dut' IpAddress='' DeviceName='dev-test' Model='N/A' SoftwareVersion='' ManagementIp='' XLocation='' YLocation='' Manufacturer='HP' ConsoleIp='' NVRAMCF='' SystemMemory='' SerialNumber='' OSVersion='' CPUSpeed='' Status='Available' RemainingTime='' StartDate='' EndDate='' UserName='' AvailablePort='0/0/2' PortType='L1/L2/Open' FreePorts='' OSType='N/A' ServerType='N/A' SlotNumber='' PortName='GigabitEthernet0,GigabitEthernet1' Availability='' AvailabilityDay='' AvailabilityDate='' AvailabilityTime='' DomainName='Guaranteed'><DEVICE DeviceId='12751' ModelType='Dut' DeviceName='dev-test' DeviceType='Dut' Manufacturer='HP' Password='' LoopBackAddress='' PortType='' ChassisAddress='' PhysicalPortType='' MainPortOnSwitch='' ControllerInfo='' PowerStatus='' ProtoTypeFlag=''></DEVICE></DEVICES><DEVICES DeviceId='12801' DeviceType='Dut' IpAddress='1.18.3.2' DeviceName='R3_R2' Model='ASR1006' SoftwareVersion='' ManagementIp='1.18.3.2' XLocation='' YLocation='' Manufacturer='Cisco' ConsoleIp='172.27.41.161:2013' NVRAMCF='32768K bytes' SystemMemory='4208751K/6147K bytes' SerialNumber='FOX1240GT3W' OSVersion='15.3(2)S1' CPUSpeed='' Status='Available' RemainingTime='' StartDate='' EndDate='' UserName='' AvailablePort='9/0/2' PortType='L1/L2/Open' RouteProcessorName='' RouteProcessorVid='' RouteProcessorPid='R0=ASR1000-RP2=V03=8 GB' EmbeddedProcessorName='' EmbeddedProcessorVid='' EmbeddedProcessorPid='F0=ASR1000-ESP20=V03==ESP20=1RU-VE,F1=ASR1000-ESP20=V02==ESP20=1RU-VE' SoftwarePackage='(X86_64_LINUX_IOSD-ADVENTERPRISEK9-M)' FreePorts='' LineCardName='' LineCardPid='(Slot 0) MCP-CC^(Module 0) SPA-8X1GE-V2,(Slot 2) ASR1000-SIP40^(Module 2) SPA-1X10GE-L-V2*(Module 3) SPA-1X10GE-L-V2*(Module 1) SPA-1X10GE-L-V2' LineCardVid='' ModuleName='SPAsubslot0/0,SPAsubslot2/2,SPAsubslot2/3,SPAsubslot2/1' ModulePid='SPA-8X1GE-V2,SPA-1X10GE-L-V2,SPA-1X10GE-L-V2,SPA-1X10GE-L-V2' ModuleVid='V02,V02,V03,V02' OSType='IOS-XE' ServerType='' PartnerInfo='MRV-13::1000::6*MRV-11::10000::3' SlotNumber='0,2,P0,P1,R0,F0,F1' PortName='GigabitEthernet0/0/0,GigabitEthernet0/0/1,GigabitEthernet0/0/2,GigabitEthernet0/0/3,GigabitEthernet0/0/4,GigabitEthernet0/0/5,GigabitEthernet0/0/6,GigabitEthernet0/0/7,Te2/2/0,Te2/3/0,Te2/1/0,GigabitEthernet0' TotalMemory='8 GB' Nitrox='' Octeon='' Availability='' AvailabilityDay='' AvailabilityDate='' AvailabilityTime='' DomainName='Guaranteed'><DEVICE DeviceId='12801' ModelType='ASR1006' DeviceName='R3_R2' DeviceType='Cisco' Password='' LoopBackAddress='' PortType='' ChassisAddress='' PhysicalPortType='' MainPortOnSwitch='' ControllerInfo='' PowerStatus='' ProtoTypeFlag='false'></DEVICE></DEVICES><DEVICES DeviceId='13379' DeviceType='' IpAddress='' DeviceName='mrv-14' Model='NC316-288PMC-4X' SoftwareVersion='' ManagementIp='1.18.42.14' XLocation='' YLocation='' Manufacturer='' ConsoleIp='' NVRAMCF=' 7MB/32MB used (24MB free' SystemMemory=' 37MB/124MB used (86MB fr' SerialNumber='031913AT974B' OSVersion='EM316LNXNM' CPUSpeed='' Status='Available' RemainingTime='' StartDate='' EndDate='' UserName='' AvailablePort='0/0/272' PortType='L1/L2/Open' RouteProcessorName='' RouteProcessorVid='' RouteProcessorPid='' EmbeddedProcessorName='' EmbeddedProcessorVid='' EmbeddedProcessorPid='' SoftwarePackage='' FreePorts='' LineCardName='' LineCardPid='' LineCardVid='' ModuleName='' ModulePid='' ModuleVid='' OSType='' ServerType='' PartnerInfo='' SlotNumber='1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9' PortName='1.1.1,1.1.2,1.1.3,1.1.4,1.1.5,1.1.6,1.1.7,1.1.8,1.1.9,1.1.10,1.1.11,1.1.12,1.1.13,1.1.14,1.1.15,1.1.16,1.1.17,1.1.18,1.1.19,1.1.20,1.1.21,1.1.22,1.1.23,1.1.24,1.1.25,1.1.26,1.1.27,1.1.28,1.1.29,1.1.30,1.1.31,1.1.32,1.1.33,1.1.34,1.1.35,1.1.36,1.2.1,1.2.2,1.2.3,1.2.4,1.2.5,1.2.6,1.2.7,1.2.8,1.2.9,1.2.10,1.2.11,1.2.12,1.2.13,1.2.14,1.2.15,1.2.16,1.2.17,1.2.18,1.2.19,1.2.20,1.2.21,1.2.22,1.2.23,1.2.24,1.2.25,1.2.26,1.2.27,1.2.28,1.2.29,1.2.30,1.2.31,1.2.32,1.2.33,1.2.34,1.2.35,1.2.36,1.3.1,1.3.2,1.3.3,1.3.4,1.3.5,1.3.6,1.3.7,1.3.8,1.3.9,1.3.10,1.3.11,1.3.12,1.3.13,1.3.14,1.3.15,1.3.16,1.3.17,1.3.18,1.3.19,1.3.20,1.3.21,1.3.22,1.3.23,1.3.24,1.3.25,1.3.26,1.3.27,1.3.28,1.3.29,1.3.30,1.3.31,1.3.32,1.3.33,1.3.34,1.3.35,1.3.36,1.4.1,1.4.2,1.4.3,1.4.4,1.4.5,1.4.6,1.4.7,1.4.8,1.4.9,1.4.10,1.4.11,1.4.12,1.4.13,1.4.14,1.4.15,1.4.16,1.4.17,1.4.18,1.4.19,1.4.20,1.4.21,1.4.22,1.4.23,1.4.24,1.4.25,1.4.26,1.4.27,1.4.28,1.4.29,1.4.30,1.4.31,1.4.32,1.4.33,1.4.34,1.4.35,1.4.36,1.5.1,1.5.2,1.5.3,1.5.4,1.5.5,1.5.6,1.5.7,1.5.8,1.5.9,1.5.10,1.5.11,1.5.12,1.5.13,1.5.14,1.5.15,1.5.16,1.5.17,1.5.18,1.5.19,1.5.20,1.5.21,1.5.22,1.5.23,1.5.24,1.5.25,1.5.26,1.5.27,1.5.28,1.5.29,1.5.30,1.5.31,1.5.32,1.5.33,1.5.34,1.5.35,1.5.36,1.6.1,1.6.2,1.6.3,1.6.4,1.6.5,1.6.6,1.6.7,1.6.8,1.6.9,1.6.10,1.6.11,1.6.12,1.6.13,1.6.14,1.6.15,1.6.16,1.6.17,1.6.18,1.6.19,1.6.20,1.6.21,1.6.22,1.6.23,1.6.24,1.6.25,1.6.26,1.6.27,1.6.28,1.6.29,1.6.30,1.6.31,1.6.32,1.6.33,1.6.34,1.6.35,1.6.36,1.7.1,1.7.2,1.7.3,1.7.4,1.7.5,1.7.6,1.7.7,1.7.8,1.7.9,1.7.10,1.7.11,1.7.12,1.7.13,1.7.14,1.7.15,1.7.16,1.7.17,1.7.18,1.7.19,1.7.20,1.7.21,1.7.22,1.7.23,1.7.24,1.7.25,1.7.26,1.7.27,1.7.28,1.7.29,1.7.30,1.7.31,1.7.32,1.7.33,1.7.34,1.7.35,1.7.36,1.8.1,1.8.2,1.8.3,1.8.4,1.8.5,1.8.6,1.8.7,1.8.8,1.8.9,1.8.10,1.8.11,1.8.12,1.8.13,1.8.14,1.8.15,1.8.16,1.8.17,1.8.18,1.9.1,1.9.2' TotalMemory='' Nitrox='' Octeon='' Availability='' AvailabilityDay='' AvailabilityDate='' AvailabilityTime='' DomainName='Guaranteed'><DEVICE DeviceId='13379' ModelType='NC316-288PMC-4X' DeviceName='mrv-14' DeviceType='' Password='' LoopBackAddress='' PortType='' ChassisAddress='' PhysicalPortType='' MainPortOnSwitch='' ControllerInfo='' PowerStatus='' ProtoTypeFlag=''></DEVICE></DEVICES></MAINCONFIG>";
+
+    var parser = new DOMParser();
+    var xmlDoc = parser.parseFromString( xmlData , "text/xml" );
+    var root = xmlDoc.getElementsByTagName('root');
+    var row = xmlDoc.getElementsByTagName('DEVICES');
+
+    var html = '';
+    var deg = 0;
+    var panelCtr = row.length;
+    var panelSize = 236;
+    var degAddtnl = 360/row.length;
+    var tz = Math.round( ( panelSize / 2 ) / Math.tan( Math.PI / panelCtr ) )+'px';
+    document.getElementById('carousel').setAttribute("style", "-webkit-transform: translateZ(-"+tz+") rotateY(0deg);");
+
+    var devListObj =[];
+
+    for(var a =0; a< row.length; a++){
+      html += '<figure data-degree="-'+deg+'deg" style="background: hsla('+deg+', 0%, 83%, 0.9 );-webkit-transform: rotateY('+deg+'deg) translateZ( '+tz+' ); -moz-transform: rotateY('+deg+'deg) translateZ( '+tz+' ); -o-transform: rotateY('+deg+'deg) translateZ( '+tz+' ); transform: rotateY('+deg+'deg) translateZ( '+tz+' );">';
+      html += '<div style="width: 200px; height: 120px; left: 50px; top: 50px; line-height: 13px;  font-size: 12px;  font-weight: normal; color: black; ">';
+      html += '<table style="text-align:left;min-width: 215px;">';
+      html += "<tr><th>Device ID</th><td>"+row[a].getAttribute('DeviceId')+"</td></tr>";
+      html += "<tr><th>Device Name</th><td>"+row[a].getAttribute('DeviceName')+"</td></tr>";
+      html += "<tr><th>Mgmt. IP</th><td>"+row[a].getAttribute('ManagementIp')+"</td></tr>";
+      html += "<tr><th>Console IP</th><td>"+row[a].getAttribute('ConsoleIp')+"</td></tr>";
+      html += "<tr><th>Manufacturer</th><td>"+row[a].getAttribute('Manufacturer')+"</td></tr>";
+      html += "<tr><th>Model</th><td>"+row[a].getAttribute('Model')+"</td></tr>";
+      html += "<tr><th>Status</th><td>"+row[a].getAttribute('Status')+"</td></tr>";
+      html += "<tr><th>UserName</th><td>"+row[a].getAttribute('UserName')+"</td></tr>";
+      html += "<tr><th>Remaining Time</th><td>"+row[a].getAttribute('RemainingTime')+"</td></tr>";
+      html += "<tr><th>Available Port/s</th><td>"+row[a].getAttribute('AvailablePort')+"</td></tr>";
+      html += "<tr><th>Port Type</th><td>"+row[a].getAttribute('PortType')+"</td></tr></tr>";
+      html += '</table>';
+      html += '</div>';
+      html += '</figure>';
+      deg = deg+degAddtnl;
+      devListObj.push({
+        DeviceId: row[a].getAttribute('DeviceId'),
+        DeviceName: row[a].getAttribute('DeviceName'),
+        ManagementIp: row[a].getAttribute('ManagementIp'),
+        ConsoleIp: row[a].getAttribute('ConsoleIp'),
+        Manufacturer: row[a].getAttribute('Manufacturer'),
+        Model: row[a].getAttribute('Model'),
+        Status: row[a].getAttribute('Status'),
+        UserName: row[a].getAttribute('UserName'),
+        RemainingTime: row[a].getAttribute('RemainingTime'),
+        AvailablePort: row[a].getAttribute('AvailablePort'),
+        PortType: row[a].getAttribute('PortType'),
+        degree: deg
+      });
+    }
+    document.getElementById('carousel').innerHTML=html;
+    setTimeout(function(){
+        init();
+        //window.addEventListener( 'DOMContentLoaded', init, false);
+    },1000);
+    
+    var init = function() {
+      var carousel = document.getElementById('carousel'),
+          navButtons = document.querySelectorAll('#navigation button'),
+          arrowButtons = document.querySelectorAll('.arrwImg'),
+          figureButtons = document.querySelectorAll('#carousel figure'),
+          panelCount = carousel.children.length,
+          transformProp = Modernizr.prefixed('transform'),
+          theta = 0,
+          
+
+          onNavButtonClick = function( event ){
+            var increment = parseInt( event.target.getAttribute('data-increment') );
+            theta += ( 360 / panelCount ) * increment * -1;
+            carousel.style[ transformProp ] = 'translateZ( -'+tz+' ) rotateY(' + theta + 'deg)';
+          };
+          onFigButtonClick = function( event ){
+            var increment = parseInt( event.target.getAttribute('data-degree') );
+            console.log("increment="+increment+"  theta=="+theta);
+            carousel.style[ transformProp ] = 'translateZ( -'+tz+' ) rotateY(' + increment + 'deg)';
+          };
+
+      for (var i=0; i < 2; i++) {
+        navButtons[i].addEventListener( 'click', onNavButtonClick, false);
+      }
+      for (var i=0; i < 2; i++) {
+        arrowButtons[i].addEventListener( 'click', onNavButtonClick, false);
+      }
+      for(var a=0; a < panelCount; a++){
+        figureButtons[a].addEventListener('click', onFigButtonClick, false);
+      }
+    };
+
+  </script>
+
+  
+  <footer>
+    <p id="disclaimer">Sorry, your browser does not support CSS 3D transforms. Try viewing this page in <a href="http://www.apple.com/safari/">Safari</a>, <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.mozilla.org/en-US/firefox/channel/">Firefox Aurora</a>, or on an iOS device.</p>
+    <p>Example for <a href="../">Intro to CSS 3D transforms</a> by David DeSandro</p>
+  </footer>
+
+
+</body></html>
